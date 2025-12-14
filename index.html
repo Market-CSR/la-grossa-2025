@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Grossa 2025 - Comprobador de Números</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #f5f5f5;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            color: #ffd700;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            color: #aaa;
+            font-size: 1.1em;
+        }
+        .form-section {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ffd700;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #444;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+            font-size: 1.1em;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        .btn-secondary {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+        }
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+        .numbers-list {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .number-item {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid #ffd700;
+        }
+        .number-info {
+            font-size: 1.2em;
+        }
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        .btn-delete:hover {
+            background: #c0392b;
+        }
+        .empty-message {
+            text-align: center;
+            color: #888;
+            padding: 30px;
+            font-style: italic;
+        }
+        .info-box {
+            background: rgba(52, 152, 219, 0.2);
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #888;
+            font-size: 0.9em;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            .form-section, .numbers-list {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎉 La Grossa 2025 🎉</h1>
+            <p class="subtitle">Comprobador de Números - Cap d'Any</p>
+        </header>
+
+        <div class="form-section">
+            <h2 style="margin-bottom: 20px; color: #ffd700;">Afegir Número</h2>
+            <form id="addNumberForm">
+                <div class="form-group">
+                    <label for="number">Número (5 xifres) *</label>
+                    <input type="text" id="number" maxlength="5" pattern="[0-9]{5}" placeholder="00000" required>
+                </div>
+                <div class="form-group">
+                    <label for="series">Sèrie (opcional)</label>
+                    <input type="text" id="series" maxlength="2" placeholder="01-99">
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar Número</button>
+            </form>
+            <button onclick="window.open('https://www.loteriescatalunya.cat/ca/la-grossa/resultats', '_blank')" class="btn btn-secondary">
+                Ver Resultats Oficials
+            </button>
+            <div class="info-box">
+                <strong>📅 Data del sorteig:</strong> 31 de desembre de 2025, 13:00h<br>
+                <strong>🔒 Privacitat:</strong> Les teves dades es guarden localment al teu navegador.
+            </div>
+        </div>
+
+        <div class="numbers-list">
+            <h2 style="margin-bottom: 20px; color: #ffd700;">Els Meus Números</h2>
+            <div id="numbersList"></div>
+        </div>
+
+        <footer>
+            <p>La Grossa de Cap d'Any 2025 - Loteries de Catalunya</p>
+            <p style="margin-top: 10px; font-size: 0.8em;">Aquesta aplicació no està afiliada amb Loteries de Catalunya</p>
+        </footer>
+    </div>
+
+    <script>
+        // Funció per carregar els números guardats
+        function loadNumbers() {
+            const numbers = JSON.parse(localStorage.getItem('lagrossaNumbers') || '[]');
+            const numbersList = document.getElementById('numbersList');
+            
+            if (numbers.length === 0) {
+                numbersList.innerHTML = '<div class="empty-message">No tens cap número guardat encara.<br>Afegeix els teus números a dalt!</div>';
+                return;
+            }
+            
+            numbersList.innerHTML = numbers.map((item, index) => `
+                <div class="number-item">
+                    <div class="number-info">
+                        <strong>Número:</strong> ${item.number}
+                        ${item.series ? `<span style="margin-left: 15px;"><strong>Sèrie:</strong> ${item.series}</span>` : ''}
+                    </div>
+                    <button class="btn-delete" onclick="deleteNumber(${index})">✕ Esborrar</button>
+                </div>
+            `).join('');
+        }
+        
+        // Funció per afegir un número
+        document.getElementById('addNumberForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const number = document.getElementById('number').value.padStart(5, '0');
+            const series = document.getElementById('series').value;
+            
+            // Validació
+            if (!/^\d{5}$/.test(number)) {
+                alert('El número ha de tenir 5 xifres!');
+                return;
+            }
+            
+            if (series && !/^\d{1,2}$/.test(series)) {
+                alert('La sèrie ha de ser un número entre 01 i 99!');
+                return;
+            }
+            
+            // Guardar
+            const numbers = JSON.parse(localStorage.getItem('lagrossaNumbers') || '[]');
+            numbers.push({
+                number: number,
+                series: series || '',
+                addedDate: new Date().toISOString()
+            });
+            localStorage.setItem('lagrossaNumbers', JSON.stringify(numbers));
+            
+            // Netejar formulari
+            document.getElementById('number').value = '';
+            document.getElementById('series').value = '';
+            
+            // Recarregar llista
+            loadNumbers();
+            
+            // Missatge de confirmació
+            alert('✅ Número guardat correctament!');
+        });
+        
+        // Funció per esborrar un número
+        function deleteNumber(index) {
+            if (!confirm('Segur que vols esborrar aquest número?')) return;
+            
+            const numbers = JSON.parse(localStorage.getItem('lagrossaNumbers') || '[]');
+            numbers.splice(index, 1);
+            localStorage.setItem('lagrossaNumbers', JSON.stringify(numbers));
+            loadNumbers();
+        }
+        
+        // Carregar números a l'inici
+        loadNumbers();
+    </script>
+</body>
+</html>
